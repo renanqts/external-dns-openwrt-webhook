@@ -1,0 +1,29 @@
+---
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: external-dns-openwrt-webhook
+build:
+  artifacts:
+    - image: webhook
+      ko:
+        dir: ./cmd/webhook
+        fromImage: gcr.io/distroless/static-debian12:nonroot
+deploy:
+  helm:
+    releases:
+    - name: external-dns
+      repo: https://kubernetes-sigs.github.io/external-dns
+      remoteChart: external-dns
+      version: 1.15.2
+      setValueTemplates:
+        provider:
+          webhook:
+            image:
+              repository: "{{.IMAGE_REPO_webhook}}"
+              tag: "{{.IMAGE_TAG_webhook}}"
+      valuesFiles:
+        - example/values.yaml
+manifests:
+  rawYaml:
+    - example/services.yaml

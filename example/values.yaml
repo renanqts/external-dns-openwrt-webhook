@@ -1,0 +1,49 @@
+logLevel: info
+policy: upsert-only
+provider:
+  name: webhook
+  webhook:
+    livenessProbe:
+      httpGet:
+        path: /ping
+        port: 8888
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+    readinessProbe:
+      httpGet:
+        path: /ping
+        port: 8888
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+    # The following values are set to the default values
+    env:
+      - name: SHUTDOWN_TIMEOUT_SECONDS
+        value: "5"
+      - name: LOG_LEVEL
+        value: info
+      - name: LOG_STACK_TRACE
+        value: "false"
+      - name: LOG_ENCODING
+        value: json
+      - name: ROUTER_HEALTHCHECK_INTERVAL
+        value: /ping
+      - name: ROUTER_HEALTHCHECK_PORT
+        value: "8888"
+      - name: ROUTER_GIN_RELEASE_MODE
+        value: "true"
+      - name: PROVIDER_OPENWRT_LUCIRPC_HOSTNAME
+        value: "192.168.1.1"
+      - name: PROVIDER_OPENWRT_LUCIRPC_PORT
+        value: "443"
+      - name: PROVIDER_OPENWRT_LUCIRPC_SSL
+        value: "true"
+      - name: PROVIDER_OPENWRT_LUCIRPC_RPC_ID
+        value: "1"
+      - name: PROVIDER_OPENWRT_LUCIRPC_TIMEOUT
+        value: "15"
+      - name: PROVIDER_OPENWRT_LUCIRPC_INSECURE_SKIP_VERIFY
+        value: "false"
+      - name: PROVIDER_OPENWRT_LUCIRPC_AUTH_USERNAME
+        value: root
+      - name: PROVIDER_OPENWRT_LUCIRPC_AUTH_PASSWORD
+        value: admin

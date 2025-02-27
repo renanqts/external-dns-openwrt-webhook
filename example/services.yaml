@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dummy-cname
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: cname.foobar.io
+    external-dns.alpha.kubernetes.io/target: taget.foobar.io
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8888
+      targetPort: 8888
+  selector:
+    app.kubernetes.io/name: external-dns
+  externalIPs:
+  - 192.168.150.1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dummy-a
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: a.foobar.io
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8888
+      targetPort: 8888
+  selector:
+    app.kubernetes.io/name: external-dns
+  externalIPs:
+  - 192.168.150.2

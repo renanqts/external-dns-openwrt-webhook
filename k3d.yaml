@@ -1,0 +1,15 @@
+---
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: external-dns-openwrt-webhook
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik,metrics-server,local-storage,network-policy
+        nodeFilters:
+          - server:*
+ports:
+  - port: 8080:8080
+    nodeFilters:
+      - loadbalancer
