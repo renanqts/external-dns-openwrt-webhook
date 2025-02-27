@@ -1,0 +1,21 @@
+version-template: '$MAJOR.$MINOR.$PATCH'
+name-template: '$NEXT_PATCH_VERSION'
+tag-template: '$NEXT_PATCH_VERSION'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feat'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+  - title: '🧰 Maintenance'
+    label:
+      - 'chore'
+      - 'refactor'
+  - title: '📚 Documentation'
+    label:
+      - 'docs'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+template: |
+  ## Changes
+  $CHANGES
