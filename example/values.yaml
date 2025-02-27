@@ -3,6 +3,9 @@ policy: upsert-only
 provider:
   name: webhook
   webhook:
+    image:
+      repository: renanqts/external-dns-openwrt-webhook
+      tag: v0.1.0
     livenessProbe:
       httpGet:
         path: /ping
