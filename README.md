@@ -9,6 +9,16 @@ For examples of creating DNS records either via CRDs or via Ingress/Service anno
 - Supported DNS record types: `A`, `CNAME`.
 - Only `psert-only` policy is supported.
 
+## OpenWRT Prerequisites
+You must install the following packages in OpenWRT for the webhook to function:
+- luci-mod-rpc
+- luci-lib-ipkg
+- luci-compat
+
+```bash
+opkg update && opkg install luci-mod-rpc luci-lib-ipkg luci-compat
+```
+
 ## Configuration Options
 You can find all the environment variables allowed as well as the default in the [values file](example/values.yaml#L19).   
 The installation can be achieved via [helm chart](skaffold.yaml#L15-L26).
