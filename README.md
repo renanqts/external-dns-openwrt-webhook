@@ -7,7 +7,7 @@ For examples of creating DNS records either via CRDs or via Ingress/Service anno
 ## Limitations
 - `DNSEndpoints` with multiple `targets` are not supported.
 - Supported DNS record types: `A`, `CNAME`.
-- Only `psert-only` policy is supported.
+- Only `upsert-only` policy is supported.
 
 ## OpenWRT Prerequisites
 You must install the following packages in OpenWRT for the webhook to function:
